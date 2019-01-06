@@ -216,28 +216,32 @@ $(document).ready(function () {
         7: 'archive/edit/cardin.html',
         8: 'archive/edit/contre-courant.html',
         9: 'archive/edit/thomaspozsgai.html'
-      },
-
+      }
     }
-    function createFrames(key) {
+    function createFrames(num) {
       if (!selectedDiv.children.length) {
         var i = document.createElement('iframe');
-        i.src = iframeLinks['edit'][key];
+        i.src = iframeLinks['edit'][hash];
+        console.log(num + " the supposed hash")
         i.scrolling = 'yes';
         i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
         selectedDiv.appendChild(i);
       }
     }
-    if (iframeLinks.edit[hash] && !selectedDiv.children.length) {
-      var createFrames = new Promise(function (resolve, reject) {
-        resolve(createFrames(hash));
-      })
-        .then(function () {
-          for (num in iframeLinks['edit']) {
-            console.log('At the For In');
-            createFrames(num);
-          }
+    function waitCreateFrames(num) {
+      if (iframeLinks.edit[num] && !selectedDiv.children.length) {
+        return new Promise(function (resolve, reject) {
+          console.log(num);
+          console.log("from promise");
+          // console.log(num);
+          return resolve(createFrames(num));
         })
+      }
+    }
+    for (var num in iframeLinks['edit']) {
+      console.log(num);
+      console.log("from for in")
+      waitCreateFrames(num);
     }
   }
 
