@@ -77,9 +77,11 @@ if (window.isLinux) { $html.addClass('linux'); }
 window.isRetina = ((window.matchMedia && (window.matchMedia('only screen and (min-resolution: 124dpi), only screen and (min-resolution: 1.3dppx), only screen and (min-resolution: 48.8dpcm)').matches || window.matchMedia('only screen and (-webkit-min-device-pixel-ratio: 1.3), only screen and (-o-min-device-pixel-ratio: 2.6/2), only screen and (min--moz-device-pixel-ratio: 1.3), only screen and (min-device-pixel-ratio: 1.3)').matches)) || (window.devicePixelRatio && window.devicePixelRatio > 1.3));
 
 if (window.isRetina) { $html.addClass('retina'); }
-
+$(document).ready(function () {
+})
 //On DOM ready
 $(document).ready(function () {
+  if (!window.frameElement) renderFrames('init');
   "use strict";
   var $body = $('body');
 
@@ -172,7 +174,15 @@ $(document).ready(function () {
   //   importParentStyles();
   // }
 
+  // if (!window.frameElement) {
+  //   renderFrames('init');
+  //   // console.log('callin it')
+  // }
+
   //Check hash on start
+  if (!window.location.hash == '' && !window.frameElement) {
+    window.location.hash = 1;
+  }
   function updateHash() {
     var isHash = window.location.href.split("#")[1];
     if ((isHash) && ($('.slide[name="' + isHash + '"],.slide[data-name="' + isHash + '"]').length > 0)) {
@@ -197,52 +207,61 @@ $(document).ready(function () {
     } else {
       $body.addClass('firstSlide stage-1');
     }
-    if (!window.frameElement) {
-      renderFrames();
-    }
   }
   updateHash();
 
 
 
-  function renderFrames() {
-    var hash = window.location.href.split('#')[1]; //i have retreived the first hash,
-    var selectedDiv = document.getElementById('slide' + hash);
+  function renderFrames(params) {
+    console.log(params);
+    var timesRun = 0;
+    var hash = window.location.href.split('#')[1];
     var iframeLinks = {
       'edit': {
-        1: 'archive/edit/francpairon.html',
-        4: 'archive/edit/guypeellaert.html',
-        6: 'archive/edit/zapa.html',
-        7: 'archive/edit/cardin.html',
-        8: 'archive/edit/contre-courant.html',
-        9: 'archive/edit/thomaspozsgai.html'
+        1: 'francpairon.html',
+        4: 'guypeellaert.html',
+        6: 'zapa.html',
+        7: 'cardin.html',
+        8: 'contre-courant.html',
+        9: 'thomaspozsgai.html'
       }
     }
-    function createFrames(num) {
+    function createFrames(passedHash, params) {
+      // console.trace();
+      var selectedDiv = document.getElementById('slide' + passedHash)
+      var i = document.createElement('iframe');
+      i.scrolling = 'yes';
+      i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+      if (passedHash) {
+        i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+      } else {
+        selectedDiv = document.getElementById('slide' + hash);
+        i.src = 'archive/edit/' + iframeLinks['edit'][hash];
+      }
+      console.log(window.location.href);
+      console.log('@ createFrames and passed hash is :' + passedHash);
+      console.log('selectedDiv is ' + selectedDiv.id);
+      // if (!timesRun) {
+      //   console.log(timesRun);
+      //   i.addEventListener('load', runPromise);
+      // }
+      if (params) {
+        i.addEventListener('load', runPromise);
+      }
       if (!selectedDiv.children.length) {
-        var i = document.createElement('iframe');
-        i.src = iframeLinks['edit'][hash];
-        console.log(num + " the supposed hash")
-        i.scrolling = 'yes';
-        i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
         selectedDiv.appendChild(i);
+        timesRun += 1; //why do i have to do this? because line 244 was not working with the 'init' params passed in from the document ready
       }
     }
-    function waitCreateFrames(num) {
-      if (iframeLinks.edit[num] && !selectedDiv.children.length) {
-        return new Promise(function (resolve, reject) {
-          console.log(num);
-          console.log("from promise");
-          // console.log(num);
-          return resolve(createFrames(num));
-        })
+
+    function runPromise() {
+      for (let num in iframeLinks['edit']) {
+        (async function waitCreateFrames(i) {
+          await new Promise(function (resolve, reject) { resolve(createFrames(i)) })
+        })(num);
       }
     }
-    for (var num in iframeLinks['edit']) {
-      console.log(num);
-      console.log("from for in")
-      waitCreateFrames(num);
-    }
+    createFrames(undefined, params);
   }
 
   //Listen history changes
@@ -253,7 +272,7 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
-  var isHash = window.location.href.split("#")[1];
+
 
   //Preload images
   if (window.preload) {
