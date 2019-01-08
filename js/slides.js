@@ -227,7 +227,6 @@ $(document).ready(function () {
       }
     }
     function createFrames(passedHash, params) {
-      // console.trace();
       var selectedDiv = document.getElementById('slide' + passedHash)
       var i = document.createElement('iframe');
       i.scrolling = 'yes';
@@ -238,19 +237,11 @@ $(document).ready(function () {
         selectedDiv = document.getElementById('slide' + hash);
         i.src = 'archive/edit/' + iframeLinks['edit'][hash];
       }
-      console.log(window.location.href);
-      console.log('@ createFrames and passed hash is :' + passedHash);
-      console.log('selectedDiv is ' + selectedDiv.id);
-      // if (!timesRun) {
-      //   console.log(timesRun);
-      //   i.addEventListener('load', runPromise);
-      // }
-      if (params) {
+      if (params == 'init') {
         i.addEventListener('load', runPromise);
       }
       if (!selectedDiv.children.length) {
         selectedDiv.appendChild(i);
-        timesRun += 1; //why do i have to do this? because line 244 was not working with the 'init' params passed in from the document ready
       }
     }
 
