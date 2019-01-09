@@ -11,7 +11,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link href="css/slides.css" rel="stylesheet" type="text/css">
+  <link href="css/slides.css" rel="stylesheet" id='slidescss' type="text/css">
 
   <!-- Page Title -->
   <title>Isabelle Ballu - Editorial</title>
@@ -449,9 +449,9 @@
   </nav>
 
   <!-- Sidebar -->
-  <nav class="sidebar bottom yellow" data-sidebar-id="9">
+  <nav class="sidebar bottom" data-sidebar-id="9">
     <div class="content">
-      <script src="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js" defer></script>
+      <script src="js/owl.carousel.min.js" defer></script>
       <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css" rel="stylesheet"
         type="text/css">
       <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css" rel="stylesheet"
@@ -502,27 +502,24 @@
 
         <!-- your carousel -->
         <div class="owl-carousel owl-theme ae-3">
-          <!-- <div class="item"><a href="#1"><img src="assets/img/IMG1179.jpeg" alt="1" class="cover"></a></div> -->
-          <div class="item"><a href="#1"><img src="assets/img/IMG1179.jpeg" alt="1" class="cover"></a></div>
-          <div class="item"><a href="#2"><img src="assets/img/lpzip.jpg" alt="2" class="cover"></a></div>
-          <div class="item"><a href="#3"><img src="assets/img/LG026.jpeg" alt="3" class="cover"></a></div>
-          <div class="item"><a href="#4"><img src="assets/img/IMG0509.jpg" alt="4" class="cover"></a></div>
-          <div class="item"><a href="#5"><img src="assets/img/IB9ArnaudLoubry.jpeg" alt="5" class="cover"></a></div>
-          <div class="item"><a href="#6"><img src="assets/img/zapa.jpg" alt="6" class="cover"></a></div>
-          <div class="item"><a href="#7"><img src="assets/img/ArticleDepecheMode1.jpg" alt="7" class="cover"></a></div>
-          <div class="item"><a href="#8"><img src="assets/img/ArticleFigaroMar2003screen.jpg" alt="8" class="cover"></a></div>
-          <!-- <div class="item"><a href="#9"><img src="assets/img/tpscreen.jpg" alt="9" class="cover"></a></div> -->
-          <div class="item">10</div>
-          <div class="item">11</div>
-          <div class="item">12</div>
-          <div class="item">13</div>
-          <div class="item">14</div>
-          <div class="item">15</div>
-          <div class="item">16</div>
-          <div class="item">17</div>
-          <div class="item">18</div>
-          <div class="item">19</div>
-          <div class="item">20</div>
+          <div class="item"><a href="#1"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG1179.jpeg"
+                alt="1" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#2"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/lpzip.jpg"
+                alt="2" class="cover deferredImg "></a></div>
+          <div class="item"><a href="#3"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/LG026.jpeg"
+                alt="3" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#4"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG0509.jpg"
+                alt="4" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#5"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IB9ArnaudLoubry.jpeg"
+                alt="5" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#6"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/zapa.jpg"
+                alt="6" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#7"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleDepecheMode1.jpg"
+                alt="7" class="cover deferredImg"></a></div>
+          <div class="item"><a href="#8"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleFigaroMar2003screen.jpg"
+                alt="8" class="cover deferredImg"></a></div>
+          <!-- <div class="item"><a href="#9"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/tpscreen.jpeg"
+                alt="9" class="cover deferredImg"></a></div> -->
         </div>
 
       </div>
@@ -598,9 +595,6 @@
     });
   </script>
 
-
-  <!-- universe is up , down is brand-->
-
   <!-- Slide 1 -->
   <section class="slide fade kenBurns" data-name="1" data-title="Franc' Pairon">
 
@@ -655,7 +649,10 @@
 
 
     <!-- s2-background -->
-    <div class="background" style="background-image:url(assets/img/lpzip.jpg)"></div>
+    <!-- <div class="background" style="background-image:url(assets/img/lpzip.jpg)"> -->
+    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="LP-zip" data-src="assets/img/lpzip.jpg"
+      class="background deferredImg">
+    </div>
 
     <!-- s2-navigation bottom -->
     <!-- <nav class="panel bottom" style="z-index:1000;">
@@ -760,21 +757,6 @@
     </div>
     <!-- <iframe src="archive/edit/guypeellaert.html" scrolling="yes" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation"></iframe> -->
 
-    <!-- s4-background 
-<div class="background hideForDesktop" style="background-image:url(); background-position: bottom left; "></div> -->
-
-
-
-    <!-- s1-navigation bottom -->
-    <!-- <nav class="panel bottom">
-      <div class="sections">
-        <div class="right">
-          <span data-dropdown-id="s4" class="button actionButton dropdownTrigger" style="padding-top:10px !important; padding-right:50px !important;">
-            <i class="material-icons">share</i>
-          </span>
-        </div>
-      </div>
-    </nav> -->
 
   </section>
 
@@ -806,11 +788,6 @@
 
   <!-- Slide 5 -->
   <section class="slide whiteSlide fade kenBurns slideshow" id="slide5" data-name="5" data-title="5">
-
-
-
-
-
 
     <!-- s5-background -->
     <div class="background shown" style="background-image:url(assets/img/IB9ArnaudLoubry.jpeg); background-position: top center"></div>
@@ -863,10 +840,6 @@
     <div class="content" id="slide6" style="min-width: 100%; width: 100%; height: 100%; overflow-y: scroll; overflow: hidden; -webkit-overflow-scrolling: touch; -webkit-overflow-scrolling: touch;">
     </div>
     <!-- <iframe src="archive/edit/zapa.html" scrolling="yes" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation"></iframe> -->
-
-    <!-- s6-background 
-<div class="background hideForDesktop" style="background-image:url(); background-position: bottom left; "></div> -->
-
 
 
     <!-- s6-navigation bottom -->
@@ -1089,6 +1062,7 @@
   }
 </script>
 <script>
+
   var dropdown = document.getElementById('shareDropdown');
   dropdown.addEventListener('click', function (e) {
     dropdown.setAttribute('data-dropdown-id', 's' + location.hash.slice(1));

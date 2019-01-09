@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#303030" />
 
   <!-- Page Title -->
   <title>Isabelle Ballu</title>
@@ -197,9 +198,9 @@
 
 
   <!-- slide1-->
-  <section class="slide whiteSlide fade kenBurns">
-
-    <div class="content popupTrigger" data-popup-id="gallery1">
+  <section class="slide whiteSlide">
+    <!-- PUT IN THE SECTION TAG WHEN READY -- (add to class): popupTrigger  data-popup-id="gallery1"-->
+    <div class="content">
       <div class="container">
         <div class="wrap">
           <div class="fix-12-12">
@@ -210,16 +211,14 @@
     </div>
 
     <!-- s1-background -->
-
     <div class="background" style="background-image:url(); background-position: center center;">
     </div>
-
 
   </section>
 
 
   <!-- Slide 2 -->
-  <section class="slide whiteSlide fade kenBurns">
+  <section class="slide whiteSlide infoText">
     <div class="content">
       <div class="container">
         <div class="wrap">
@@ -264,26 +263,29 @@
               <li class="col-8-12 cell-16">
                 <ul class="grid">
                   <li class="col-10-12 toRight">
-                    <!-- <div class="videoThumbnail ae-4 fromCenter popupTrigger" data-popup-id="video1" style=" width:auto; height:500px; background-image:url(../../assets/img/tpscreen.png); background-repeat: no-repeat; background-position: center center;"> -->
+                    <div class="videoThumbnail ae-4 fromCenter popupTrigger" data-popup-id="video1" style=" width:auto; height:500px; background-image:url(../../assets/img/tpscreen.png); background-repeat: no-repeat; background-position: center center;">
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
-          </li>
-          </ul>
-          </li>
-          </ul>
+
         </div>
 
       </div>
-
-    </div>
     </div>
 
   </section>
 
   <!-- Popup Video -->
   <div class="popup autoplay" data-popup-id="video1">
-    <div class="content">
+    <div class="close"><svg>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
+      </svg></div>
+    <div class="content popupContent">
       <div class="container">
-        <div class="wrap">
+        <div class="wrap popupContent">
           <div class="fix-10-12">
             <div class="embedVideo popupContent">
               <iframe src="https://player.vimeo.com/video/288803457?color=ff0179&portrait=0" frameborder="0"

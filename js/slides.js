@@ -174,10 +174,15 @@ $(document).ready(function () {
   //   importParentStyles();
   // }
 
-  // if (!window.frameElement) {
-  //   renderFrames('init');
-  //   // console.log('callin it')
-  // }
+  function deferImages() {
+    var imgDefer = document.getElementsByClassName('deferredImg');
+    for (var i = 0; i < imgDefer.length; i++) {
+      if (imgDefer[i].getAttribute('data-src')) {
+        imgDefer[i].setAttribute('src', imgDefer[i].getAttribute('data-src'));
+      }
+    }
+  }
+  window.onload = deferImages;
 
   //Check hash on start
   // if (!window.location.hash == '' && !window.frameElement) {
@@ -295,7 +300,7 @@ $(document).ready(function () {
         greatestKeyInSection = key;
       }
     });
-
+    // try, catch for browser support
     try {
       if (params == 'updating') {
         addNeighboringFrames();
@@ -305,55 +310,24 @@ $(document).ready(function () {
     } catch (error) {
       console.log(error);
       (function createFrames(passedHash, params) {
+
         var selectedDiv = document.getElementById('slide' + passedHash)
         var i = document.createElement('iframe');
         i.scrolling = 'yes';
         i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+
+
         if (passedHash) {
           i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
         } else {
           selectedDiv = document.getElementById('slide' + hash);
           i.src = 'archive/edit/' + iframeLinks['edit'][hash];
         }
-        if (params == 'init') {
-          i.addEventListener('load', runPromise);
-        }
         if (!selectedDiv.children.length) {
           selectedDiv.appendChild(i);
         }
       })(undefined, params);
     }
-    // if (params == 'updating') {
-    //   try {
-    //     addNeighboringFrames();
-    //   } catch (error) {
-    //     console.log(error);
-    //     (function createFrames(passedHash, params) {
-    //       var selectedDiv = document.getElementById('slide' + passedHash)
-    //       var i = document.createElement('iframe');
-    //       i.scrolling = 'yes';
-    //       i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
-    //       if (passedHash) {
-    //         i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
-    //       } else {
-    //         selectedDiv = document.getElementById('slide' + hash);
-    //         i.src = 'archive/edit/' + iframeLinks['edit'][hash];
-    //       }
-    //       if (params == 'init') {
-    //         i.addEventListener('load', runPromise);
-    //       }
-    //       if (!selectedDiv.children.length) {
-    //         selectedDiv.appendChild(i);
-    //       }
-    //     })(undefined, params);
-    //   }
-    // } else {
-    //   try {
-    //     createFrames(undefined, params)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
 
     function createFrames(passedHash, params) {
 
@@ -372,15 +346,19 @@ $(document).ready(function () {
 
       i.scrolling = 'yes';
       i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+      // var cssLink = document.querySelectorAll("link[rel=stylesheet]")[1];
 
       if (params == 'init') {
         i.addEventListener('load', addNeighboringFrames);
       }
-      // console.log(selectedDiv.children.length + ' selected div')
-      // console.log(selectedDiv);
+
       if (!selectedDiv.children.length) {
         selectedDiv.appendChild(i);
         console.log('just loaded ' + selectedDiv.id);
+        // console.log(document.querySelector('iframe').contentDocument.head.appendChild(cssLink));
+        // document.querySelector('iframe').contentDocument.body.appendChild(cssLink)
+        // console.log(cssLink);
+        // document.querySelector('iframe').head.appendChild(cssLink);
       }
     }
 
@@ -388,8 +366,6 @@ $(document).ready(function () {
       setTimeout(function () {
         var leftHash = (+hash - 1);
         var rightHash = (+hash + 1);
-        // console.log('left is ' + leftHash)
-        // console.log('right is ' + rightHash)
 
         if (leftHash > 0 && iframeLinks['edit'][leftHash]) {
           createFrames(leftHash);
@@ -397,7 +373,7 @@ $(document).ready(function () {
         if (rightHash <= greatestKeyInSection && iframeLinks['edit'][rightHash]) {
           createFrames(rightHash);
         }
-      }, 850)
+      }, 500)
     }
   }
 
@@ -425,15 +401,6 @@ $(document).ready(function () {
     window.images = imgs.length;
     $.cacheImage(imgs, { complete: function () { window.loadingProgress++; } });
 
-    // var loadingInterval = setInterval(function () {
-    //   var progress = 45 * (window.loadingProgress / window.images);
-    //   $('.loadingIcon .dash').attr('stroke-dasharray', progress + ',100');
-    //   $('.loadingIcon').redraw();
-    //   if (window.loaded) {
-    //     $('.loadingIcon .dash').attr('stroke-dasharray', '100,100');
-    //     clearInterval(loadingInterval);
-    //   }
-    // }, 400);
   }
 
   //Initiate slide
@@ -1524,7 +1491,7 @@ $(document).ready(function () {
        Popup      |_|                      */
   if (window.frameElement) {
     $(window).bind('scroll touchmove touchend', function () {
-      if (window.isMobile && !$html.hasClass('wait')) {
+      if (!$html.hasClass('wait')) {
         var infoText = $('.infoText')
         var distanceFromTop = $(window).scrollTop();
         console.log('dist from top');

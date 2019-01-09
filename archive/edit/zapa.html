@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#303030" />
+
 
   <!-- Page Title -->
   <title>Isabelle Ballu</title>
@@ -18,7 +20,7 @@
 
 
   <!-- Styles -->
-  <link href="../../css/slides.css" rel="preload" type="text/css">
+  <link href="../../css/slides.css" rel="stylesheet" type="text/css">
 
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -26,7 +28,6 @@
   <script src="../../js/slides.js" type="text/javascript" name="main-scripts"></script>
 
   <!-- Custom Scripts -->
-  <!--script src="js/custom.js" type="text/javascript" name="custom-scripts"></script-->
 
   <!-- typeface -->
   <script>
@@ -40,14 +41,11 @@
     })(document);
   </script>
 
-
-
 </head>
 
 
 
 <body class="slides scroll noBackgroundColor">
-
 
   <!-- SVG Library -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -191,9 +189,8 @@
 
 
   <!-- slide1-->
-  <section class="slide fade kenBurns">
-
-    <div class="content popupTrigger" data-popup-id="gallery1">
+  <section class="slide popupTrigger" data-popup-id="gallery1">
+    <div class="content">
       <div class="container">
         <div class="wrap">
           <div class="fix-10-12">
@@ -203,29 +200,13 @@
       </div>
     </div>
 
-    <!-- s1-background -->
-
-    <div class="background" style="background-image:url(../../assets/img/zapa1.jpg); background-position: center center;">
-    </div>
-
-
+    <div class="background" style="background-image:url(../../assets/img/zapa1.jpg); background-position: center center;"></div>
   </section>
 
-  <div class="popup" data-popup-id="gallery1">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-10-12 popupContent">
-            <img src="../../assets/img/zapa.jpg" class="selected" alt="Image" />
-            <!-- Thea! you can add multiiple images in this carasouel if you'd like. See each image is in the <li> tag above. (meaning list item) just copy and paste to add a new photo and then just chang the src -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Slide 2 -->
-  <section class="slide fade kenBurns">
+  <section class="slide infoText">
     <div class="content">
       <div class="container">
         <div class="wrap">
@@ -270,26 +251,27 @@
               <li class="col-8-12 cell-16">
                 <ul class="grid">
                   <li class="col-10-12 toRight">
-                    <!-- <div class="videoThumbnail ae-4 fromCenter popupTrigger" data-popup-id="video1" style=" width:auto; height:500px; background-image:url(../../assets/img/zapavidcover.png); background-repeat: no-repeat; background-position: center center;"> -->
+                    <div class="videoThumbnail ae-4 fromCenter popupTrigger" data-popup-id="video1" style=" width:auto; height:500px; background-image:url(../../assets/img/zapavidcover.png); background-repeat: no-repeat; background-position: center center;">
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </div>
-          </li>
-          </ul>
-          </li>
-          </ul>
         </div>
-
       </div>
-
-    </div>
     </div>
 
   </section>
 
   <!-- Popup Video -->
   <div class="popup autoplay" data-popup-id="video1">
-    <div class="content">
+    <div class="close"><svg>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
+      </svg></div>
+    <div class="content popupContent">
       <div class="container">
-        <div class="wrap">
+        <div class="wrap popupContent">
           <div class="fix-10-12">
             <div class="embedVideo popupContent">
               <iframe src="https://player.vimeo.com/video/296558014?color=ff0179&portrait=0" frameborder="0"
@@ -301,32 +283,21 @@
     </div>
   </div>
 
+  <!-- Popup gallery -->
+  <div class="popup" data-popup-id="gallery1">
+    <div class="content">
+      <div class="container">
+        <div class="wrap spaces">
+          <div class="fix-10-12 popupContent">
+            <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="hankerchief" data-src="../../assets/img/zapa.jpg"
+              style="max-height: calc(100vh - 40px); width: auto;" class=" deferredImg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
-<!--<script src="../../plugins/pulltorefresh.js"></script>
-<script>
-  /* global PullToRefresh */
-  PullToRefresh.init({
-    mainElement: 'body',
-    onRefresh: function () { alert('refresh') }
-  });
-</script>
-<script>
-  $(window).load(function () {
 
-    var theWindow = $(window),
-      $bg = $(".background img"),
-      aspectRatio = $bg.width() / $bg.height();
-
-    function resizeBg() {
-      if ((theWindow.width() / theWindow.height()) < aspectRatio) {
-        $bg.removeClass().addClass('bgheight');
-      } else {
-        $bg.removeClass().addClass('bgwidth');
-      }
-    }
-    theWindow.resize(resizeBg).trigger("resize");
-  });
-</script>-->
 
 </html>

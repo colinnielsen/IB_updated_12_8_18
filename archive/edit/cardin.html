@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#303030" />
 
   <!-- Page Title -->
   <title>Isabelle Ballu</title>
@@ -18,7 +19,7 @@
 
 
   <!-- Styles -->
-  <link href="../../css/slides.css" rel="preload" type="text/css">
+  <link href="../../css/slides.css" rel="stylesheet" type="text/css">
 
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -190,40 +191,24 @@
 
 
   <!-- slide1-->
-  <section class="slide whiteSlide fade kenBurns">
+  <section class="slide popupTrigger" data-popup-id="gallery1">
 
-    <div class="content popupTrigger" data-popup-id="gallery1">
+    <div class="content">
       <div class="container">
         <div class="wrap">
-          <div class="fix-12-12">
-          </div>
         </div>
       </div>
     </div>
 
     <!-- s1-background -->
-
     <div class="background" style="background-image:url(../../assets/img/ArticleDepecheMode.jpg); background-position: center center;">
-    </div>
-
-
+      <div>
   </section>
 
-  <div class="popup" data-popup-id="gallery1">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-10-12 popupContent">
-            <img src="../../assets/img/ArticleDepecheMode1.jpg" class="selected" alt="Image" />
-            <!-- Thea! you can add multiiple images in this carasouel if you'd like. See each image is in the <li> tag above. (meaning list item) just copy and paste to add a new photo and then just chang the src -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Slide 2 -->
-  <section class="slide whiteSlide fade kenBurns">
+  <section class="slide whiteSlide">
     <div class="content">
       <div class="container">
         <div class="wrap">
@@ -270,6 +255,36 @@
 
   </section>
 
+
+
+  <!-- slide 3-->
+  <section class="slide whiteSlide popupTrigger" data-popup-id="gallery3">
+    <div class="content ">
+      <div class="container">
+        <div class="wrap">
+        </div>
+      </div>
+    </div>
+    <!-- s4-background-->
+    <div class="background" style="background-image:url(./../../assets/img/pcjacket.jpg); background-position: center center;">
+    </div>
+
+  </section>
+
+  <!-- PopUps -->
+  <div class="popup" data-popup-id="gallery1">
+    <div class="content">
+      <div class="container">
+        <div class="wrap spaces">
+          <div class="fix-10-12 popupContent">
+            <img src="../../assets/img/ArticleDepecheMode1.jpg" class="selected" alt="Image" />
+            <!-- Thea! you can add multiiple images in this carasouel if you'd like. See each image is in the <li> tag above. (meaning list item) just copy and paste to add a new photo and then just chang the src -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Popup Video -->
   <div class="popup autoplay" data-popup-id="video1">
     <div class="content">
@@ -286,26 +301,6 @@
     </div>
   </div>
 
-
-  <!-- slide 3-->
-  <section class="slide whiteSlide fade kenBurns">
-
-
-    <div class="content popupTrigger" data-popup-id="gallery3">
-      <div class="container">
-        <div class="wrap">
-          <div class="fix-12-12">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- s4-background-->
-    <div class="background" style="background-image:url(./../../assets/img/pcjacket.jpg); background-position: center center;">
-    </div>
-
-  </section>
-
   <div class="popup" data-popup-id="gallery3">
     <div class="content">
       <div class="container">
@@ -318,7 +313,6 @@
       </div>
     </div>
   </div>
-
 </body>
 <!--<script src="../../plugins/pulltorefresh.js"></script>
 <script>

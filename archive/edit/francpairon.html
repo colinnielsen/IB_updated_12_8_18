@@ -5,7 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#303030" />
 
+  <!-- <script>
+    // window.onload = function () {
+      var link = window.parent.document.querySelectorAll("link[rel=stylesheet]")[1];
+      var newLink = document.createElement("link");
+      newLink.rel = link.rel;
+      newLink.href = link.href;
+      document.head.appendChild(newLink);
+      // };
+    </script> -->
+  <!-- <script type="text/javascript">
+    var cssLink = document.createElement("link");
+    if (parent.document.getElementById('slidescss')) {
+      console.log('hi');
+      cssLink.href = "http://" + parent.document.domain + '/test/' + 'css/slides.css';
+      cssLink.rel = "stylesheet";
+      cssLink.type = "text/css";
+      document.head.appendChild(cssLink);
+    }
+  </script> -->
   <!-- Page Title -->
   <title>Isabelle Ballu</title>
 
@@ -42,33 +62,23 @@
   <!-- Example chome-os-mobile-scroll -->
   <!-- copy this script to the head or on custom.js file to replace the slide effect with scroll for chrome OS only -->
   <!-- <script>
-    if (window.isChromeiOS) {
-      $('body').remove('stack zen cards plain zoom film').addClass('scroll');
-      window.isScroll = true;
-    }
-  -->
-  <script type="text/javascript">
-    function importParentStyles() {
-      $("link[rel=stylesheet]", parent.document).each(function () {
-        var cssLink = document.createElement("link");
-        if ($(this).attr("href") === 'css/slides.css') {
-          console.log('hi');
-          cssLink.href = "http://" + parent.document.domain + '/test/' + $(this).attr("href");
-          cssLink.rel = "stylesheet";
-          cssLink.type = "text/css";
-          document.head.appendChild(cssLink);
-        }
-      });
-    }
-  </script>
+  if (window.isChromeiOS) {
+    $('body').remove('stack zen cards plain zoom film').addClass('scroll');
+    window.isScroll = true;
+  }
+-->
 
+  <!-- <link href="../../css/slides.css" rel="stylesheet" type="text/css"> -->
 
 </head>
 
 
 
-<body class="slides scroll noBackgroundColor fadeInSlow">
 
+
+
+
+<body class="slides scroll noBackgroundColor">
 
   <!-- SVG Library -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -192,14 +202,12 @@
 
   </svg>
 
-
   <!-- Slide 1- image -->
-  <section class="slide fade kenBurns noBackgroundColor" id="disappearOnPopup">
-    <div class="content"><a name="1"></a>
+  <section class="slide popupTrigger" data-popup-id="gallery1">
+    <div class="content">
+      <!-- a name="1"></a> -->
       <div class="container">
-        <div class="wrap">
-
-        </div>
+        <div class="wrap"></div>
       </div>
     </div>
 
@@ -208,7 +216,7 @@
   </section>
 
   <!-- Slide 2- info -->
-  <section class="slide fade kenBurns noBackgroundColor">
+  <section class="slide infoText">
     <div class="content compact"><a name="2"></a>
       <div class="container">
         <div class="wrap">
@@ -276,18 +284,36 @@
   </section>
 
   <!-- s3- other images -->
-  <section class="slide fade kenBurns">
+  <section class="slide popupTrigger" data-popup-id="gallery2">
     <div class="content">
       <div class="container">
-        <div class="wrap"><a name="3"></a>
-
-
-        </div>
+        <div class="wrap"></div>
       </div>
     </div>
     <div class="background" data-velocity="30" style="background-image:url(../../assets/img/hankerchief.jpg); background-position: bottom center;"></div>
   </section>
 
+  <div class="popup" data-popup-id="gallery1">
+    <div class="content ">
+      <div class="container">
+        <div class="wrap">
+          <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="hankerchief" data-src="../../assets/img/IMG1179.jpeg"
+            style="max-height: calc(100vh - 40px); width: auto;" class=" deferredImg">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup" data-popup-id="gallery2">
+    <div class="content ">
+      <div class="container">
+        <div class="wrap">
+          <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="hankerchief" data-src="../../assets/img/hankerchief.jpg"
+            style="max-height: calc(100vh - 40px); width: auto;" class=" deferredImg">
+          <img />
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 <!-- <script src="../../plugins/pulltorefresh.js"></script>
