@@ -180,9 +180,9 @@ $(document).ready(function () {
   // }
 
   //Check hash on start
-  if (!window.location.hash == '' && !window.frameElement) {
-    window.location.hash = 1;
-  }
+  // if (!window.location.hash == '' && !window.frameElement) {
+  //   window.location.hash = 1;
+  // }
   function updateHash() {
     var isHash = window.location.href.split("#")[1];
     if ((isHash) && ($('.slide[name="' + isHash + '"],.slide[data-name="' + isHash + '"]').length > 0)) {
@@ -207,14 +207,38 @@ $(document).ready(function () {
     } else {
       $body.addClass('firstSlide stage-1');
     }
+    if (!window.frameElement) renderFrames('updating');
   }
   updateHash();
 
 
 
+  // function renderFrames(params) {
+  //   console.log(params);
+  //   var timesRun = 0;
+  //   var hash = window.location.href.split('#')[1];
+  //   var iframeLinks = {
+  //     'edit': {
+  //       1: 'francpairon.html',
+  //       4: 'guypeellaert.html',
+  //       6: 'zapa.html',
+  //       7: 'cardin.html',
+  //       8: 'contre-courant.html',
+  //       9: 'thomaspozsgai.html'
+  //     }
+  //   }
+
+  //   function runPromise() {
+  //     for (let num in iframeLinks['edit']) {
+  //       (async function waitCreateFrames(i) {
+  //         await new Promise(function (resolve, reject) { resolve(createFrames(i)) })
+  //       })(num);
+  //     }
+  //   }
+  //   createFrames(undefined, params);
+  // }
+
   function renderFrames(params) {
-    console.log(params);
-    var timesRun = 0;
     var hash = window.location.href.split('#')[1];
     var iframeLinks = {
       'edit': {
@@ -224,35 +248,157 @@ $(document).ready(function () {
         7: 'cardin.html',
         8: 'contre-courant.html',
         9: 'thomaspozsgai.html'
+      },
+      'brand': {
+
+      },
+      'detail': {
+
+      },
+      'show': {
+
+      },
+      'universe': {
+
       }
     }
-    function createFrames(passedHash, params) {
-      var selectedDiv = document.getElementById('slide' + passedHash)
-      var i = document.createElement('iframe');
-      i.scrolling = 'yes';
-      i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
-      if (passedHash) {
-        i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+    // console.log(error);
+    // function createFrames(passedHash, params) {
+    //   var selectedDiv = document.getElementById('slide' + passedHash)
+    //   var i = document.createElement('iframe');
+    //   i.scrolling = 'yes';
+    //   i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+    //   if (passedHash) {
+    //     i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+    //   } else {
+    //     selectedDiv = document.getElementById('slide' + hash);
+    //     i.src = 'archive/edit/' + iframeLinks['edit'][hash];
+    //   }
+    //   if (params == 'init') {
+    //     i.addEventListener('load', runPromise);
+    //   }
+    //   if (!selectedDiv.children.length) {
+    //     selectedDiv.appendChild(i);
+    //   }
+    // }
+
+    //^^^^^^^^^^^^^^^^^^^^
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //^^^^^^^^if you want iframes to render in the future, add them to this object in the following format. (slide number): 'filename' . just as seen in the 'edit' section.^^^^^^^^^^^^^^
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //^^^^^^^^^^^^^^^^^^^^
+
+    var greatestKeyInSection;
+    Object.keys(iframeLinks['edit']).map(function (key, index, array) {
+      // console.log(+array[index - 1])
+      if (+key >= +array[index - 1]) {
+        greatestKeyInSection = key;
+      }
+    });
+
+    try {
+      if (params == 'updating') {
+        addNeighboringFrames();
       } else {
+        createFrames(undefined, params);
+      }
+    } catch (error) {
+      console.log(error);
+      (function createFrames(passedHash, params) {
+        var selectedDiv = document.getElementById('slide' + passedHash)
+        var i = document.createElement('iframe');
+        i.scrolling = 'yes';
+        i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+        if (passedHash) {
+          i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+        } else {
+          selectedDiv = document.getElementById('slide' + hash);
+          i.src = 'archive/edit/' + iframeLinks['edit'][hash];
+        }
+        if (params == 'init') {
+          i.addEventListener('load', runPromise);
+        }
+        if (!selectedDiv.children.length) {
+          selectedDiv.appendChild(i);
+        }
+      })(undefined, params);
+    }
+    // if (params == 'updating') {
+    //   try {
+    //     addNeighboringFrames();
+    //   } catch (error) {
+    //     console.log(error);
+    //     (function createFrames(passedHash, params) {
+    //       var selectedDiv = document.getElementById('slide' + passedHash)
+    //       var i = document.createElement('iframe');
+    //       i.scrolling = 'yes';
+    //       i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+    //       if (passedHash) {
+    //         i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+    //       } else {
+    //         selectedDiv = document.getElementById('slide' + hash);
+    //         i.src = 'archive/edit/' + iframeLinks['edit'][hash];
+    //       }
+    //       if (params == 'init') {
+    //         i.addEventListener('load', runPromise);
+    //       }
+    //       if (!selectedDiv.children.length) {
+    //         selectedDiv.appendChild(i);
+    //       }
+    //     })(undefined, params);
+    //   }
+    // } else {
+    //   try {
+    //     createFrames(undefined, params)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
+
+    function createFrames(passedHash, params) {
+
+      var selectedDiv;
+      var i = document.createElement('iframe');
+      // console.log(passedHash);
+      if (passedHash && iframeLinks['edit'][passedHash]) {
+        selectedDiv = document.getElementById('slide' + passedHash);
+        i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+      } else if (iframeLinks['edit'][hash]) {
         selectedDiv = document.getElementById('slide' + hash);
         i.src = 'archive/edit/' + iframeLinks['edit'][hash];
+      } else {
+        return;
       }
+
+      i.scrolling = 'yes';
+      i.sandbox = 'allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation';
+
       if (params == 'init') {
-        i.addEventListener('load', runPromise);
+        i.addEventListener('load', addNeighboringFrames);
       }
+      // console.log(selectedDiv.children.length + ' selected div')
+      // console.log(selectedDiv);
       if (!selectedDiv.children.length) {
         selectedDiv.appendChild(i);
+        console.log('just loaded ' + selectedDiv.id);
       }
     }
 
-    function runPromise() {
-      for (let num in iframeLinks['edit']) {
-        (async function waitCreateFrames(i) {
-          await new Promise(function (resolve, reject) { resolve(createFrames(i)) })
-        })(num);
-      }
+    function addNeighboringFrames() {
+      setTimeout(function () {
+        var leftHash = (+hash - 1);
+        var rightHash = (+hash + 1);
+        // console.log('left is ' + leftHash)
+        // console.log('right is ' + rightHash)
+
+        if (leftHash > 0 && iframeLinks['edit'][leftHash]) {
+          createFrames(leftHash);
+        }
+        if (rightHash <= greatestKeyInSection && iframeLinks['edit'][rightHash]) {
+          createFrames(rightHash);
+        }
+      }, 850)
     }
-    createFrames(undefined, params);
   }
 
   //Listen history changes
