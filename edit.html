@@ -117,12 +117,12 @@
       }
     })
     $(document).on('click', '.ua', function (event) {
-      var hash = (new URL(document.location).hash);
+      var hash = window.location.hash;
       window.location.href = 'edit.html?dir=u' + hash;
       event.stopPropagation();
     })
     $(document).on('click', '.da', function (event) {
-      var hash = (new URL(document.location).hash);
+      var hash = window.location.hash;
       window.location.href = 'brand.html?dir=d' + hash;
       event.stopPropagation();
     })
@@ -498,10 +498,41 @@
         })
       </script>
 
-      <div class="fix-12-12">
+      <!-- <div class="fix-12-12"> -->
+      <div id="navTarget" class="wrap">
+      </div>
+      <!-- <ul class="flex fixedspaces" style="flex-wrap: nowrap !important;">
+        </ul> -->
 
-        <!-- your carousel -->
-        <div class="owl-carousel owl-theme ae-3">
+
+      <script>
+        var linkNames = ['edit', 'brand', 'show', 'detail', 'universe'];
+        var navTarget = document.getElementById('navTarget');
+
+
+        for (i = 0; i < linkNames.length; i++) {
+          var wrapper = document.createElement('ul');
+          wrapper.className = ' flex fixedspaces';
+          wrapper.style = 'flex-wrap: nowrap !important;'
+
+          for (j = 1; j < 21; j++) {
+            var listItem = document.createElement('li');
+            listItem.className = 'col-1-20 center';
+            var anchorTag = anchorTag = document.createElement('a');
+            anchorTag.innerText = '●';
+            anchorTag.className = 'navBubble';
+            anchorTag.href = linkNames[i] + '.html';
+            anchorTag.hash = j;
+            listItem.appendChild(anchorTag);
+            wrapper.appendChild(listItem);
+
+          }
+          navTarget.appendChild(wrapper);
+        }
+
+
+      </script>
+      <!-- <div class="owl-carousel owl-theme ae-3">
           <div class="item"><a href="#1"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG1179.jpeg"
                 alt="1" class="cover deferredImg"></a></div>
           <div class="item"><a href="#2"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/lpzip.jpg"
@@ -518,11 +549,11 @@
                 alt="7" class="cover deferredImg"></a></div>
           <div class="item"><a href="#8"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleFigaroMar2003screen.jpg"
                 alt="8" class="cover deferredImg"></a></div>
-          <!-- <div class="item"><a href="#9"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/tpscreen.jpeg"
-                alt="9" class="cover deferredImg"></a></div> -->
-        </div>
+          <div class="item"><a href="#9"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/tpscreen.jpeg"
+                alt="9" class="cover deferredImg"></a></div>
+        </div> -->
 
-      </div>
+      <!-- </div> -->
 
       <style>
         .owl-carousel .item {
