@@ -37,6 +37,7 @@ window.minSwipeToSlide = 35;
 window.enableMobileZoom = 0;
 window.allowSlideInAction = 0; //new
 window.menuShown = 1;
+window.c;
 
 var $html = $('html');
 
@@ -80,7 +81,7 @@ if (window.isRetina) { $html.addClass('retina'); }
 
 //On DOM ready
 $(document).ready(function () {
-  console.log('the document is ready');
+  if (!window.frameElement && !window.updateHashCalled) renderFrames('init');
   "use strict";
   var $body = $('body');
 
@@ -213,12 +214,9 @@ $(document).ready(function () {
       $body.addClass('firstSlide stage-1');
     }
     if (!window.frameElement) renderFrames('updating');
+    window.updateHashCalled = true;
   }
-  if (!window.frameElement) {
-    updateHash();
-    renderFrames('init');
-  }
-
+  if (!window.frameElement) updateHash();
 
 
 
@@ -250,7 +248,7 @@ $(document).ready(function () {
 
   function renderFrames(params) {
     console.log("renderframes being called and params are: " + params);
-    var hash = window.location.href.split('#')[1] ? window.location.href.split('#')[1] : "1";
+    var hash = window.location.href.split('#')[1];
     var iframeLinks = {
       'edit': {
         1: 'francpairon.html',
@@ -262,6 +260,7 @@ $(document).ready(function () {
       },
       'brand': {
         4: 'whatever.html'
+
       },
       'detail': {
 
@@ -298,9 +297,9 @@ $(document).ready(function () {
     //^^^^^^^^if you want iframes to render in the future, add them to this object in the following format. (slide number): 'filename' . just as seen in the 'edit' section.^^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     //^^^^^^^^^^^^^^^^^^^^
-    var baseLink = window.location.pathname.split('/')[2].slice(0, -5);
+
     var greatestKeyInSection;
-    Object.keys(iframeLinks[baseLink]).map(function (key, index, array) {
+    Object.keys(iframeLinks['edit']).map(function (key, index, array) {
       // console.log(+array[index - 1])
       if (+key >= +array[index - 1]) {
         greatestKeyInSection = key;
@@ -311,7 +310,7 @@ $(document).ready(function () {
       if (params == 'updating') {
         addNeighboringFrames();
       } else if (params == 'init') {
-        createFrames(hash, params);
+        createFrames(undefined, params);
       }
     } catch (error) {
       console.log(error);
@@ -324,10 +323,10 @@ $(document).ready(function () {
 
 
         if (passedHash) {
-          i.src = 'archive/' + baseLink + '/' + iframeLinks[baseLink][passedHash];
+          i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
         } else {
           selectedDiv = document.getElementById('slide' + hash);
-          i.src = 'archive/' + baseLink + '/' + iframeLinks[baseLink][hash];
+          i.src = 'archive/edit/' + iframeLinks['edit'][hash];
         }
         if (!selectedDiv.children.length) {
           selectedDiv.appendChild(i);
@@ -338,12 +337,12 @@ $(document).ready(function () {
     function createFrames(passedHash, params) {
       var selectedDiv;
       var i = document.createElement('iframe');
-      if (passedHash && iframeLinks[baseLink][passedHash]) {
+      if (passedHash && iframeLinks['edit'][passedHash]) {
         selectedDiv = document.getElementById('slide' + passedHash);
-        i.src = 'archive/' + baseLink + '/' + iframeLinks[baseLink][passedHash];
-      } else if (iframeLinks[baseLink][hash]) {
+        i.src = 'archive/edit/' + iframeLinks['edit'][passedHash];
+      } else if (iframeLinks['edit'][hash]) {
         selectedDiv = document.getElementById('slide' + hash);
-        i.src = 'archive/' + baseLink + '/' + iframeLinks[baseLink][hash];
+        i.src = 'archive/edit/' + iframeLinks['edit'][hash];
       } else {
         return;
       }
@@ -353,7 +352,6 @@ $(document).ready(function () {
       // var cssLink = document.querySelectorAll("link[rel=stylesheet]")[1];
 
       if (params == 'init') {
-        console.log('it is init and we are adding the loading add neighboring frames thing!')
         i.addEventListener('load', addNeighboringFrames);
       }
 
@@ -372,10 +370,10 @@ $(document).ready(function () {
         var leftHash = (+hash - 1);
         var rightHash = (+hash + 1);
 
-        if (leftHash > 0 && iframeLinks[baseLink][leftHash]) {
+        if (leftHash > 0 && iframeLinks['edit'][leftHash]) {
           createFrames(leftHash);
         }
-        if (rightHash <= greatestKeyInSection && iframeLinks[baseLink][rightHash]) {
+        if (rightHash <= greatestKeyInSection && iframeLinks['edit'][rightHash]) {
           createFrames(rightHash);
         }
       }, 500)
@@ -2072,8 +2070,8 @@ $(document).ready(function () {
         | |  | | |/ _` | |/ _ \ / _` |
         | |__| | | (_| | | (_) | (_| |
         |_____/|_|\__,_|_|\___/ \__, |
-                                __/  |
-        Dialog messages        /__ */
+                                 __/ |
+        Dialog messages         /__*/
 
 
   //show dialog message

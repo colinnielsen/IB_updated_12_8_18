@@ -460,9 +460,9 @@ small .small {
 .button svg * {
   pointer-events: none !important;
 }
-.popupShown {
+/* .popupShown {
   pointer-events: none !important;
-}
+} */
 .button.actionButton {
   display: inline-block;
   height: 50px;
@@ -2768,8 +2768,8 @@ html:not(.page-loaded) .slides.animated.scroll:not(.noPreload) .slide {
 }
 .sidebar .close {
   position: absolute;
-  top: 0;
-  right: 0;
+  bottom: 0;
+  left: 50%;
   cursor: pointer;
   padding: 14px;
   font-size: 0;

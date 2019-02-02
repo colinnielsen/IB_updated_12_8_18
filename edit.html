@@ -118,7 +118,7 @@
     })
     $(document).on('click', '.ua', function (event) {
       var hash = window.location.hash;
-      window.location.href = 'edit.html?dir=u' + hash;
+      window.location.href = 'universe.html?dir=u' + hash;
       event.stopPropagation();
     })
     $(document).on('click', '.da', function (event) {
@@ -385,7 +385,7 @@
 
   <nav class="panel bottom">
     <div class="navigation">
-      <div class="center downArrow">
+      <div class="center downArrow ">
         <a class="da button actionButton">
           <svg>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
@@ -397,11 +397,13 @@
 
   <nav class="side left">
     <div class="navigation">
-      <div class="cell">
+      <div class="cell center">
         <span class="prevSlide">
-          <svg class="sideArrow">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
-          </svg>
+          <a class="button actionButton">
+            <svg class="sideArrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+            </svg>
+          </a>
         </span>
       </div>
     </div>
@@ -409,11 +411,13 @@
 
   <nav class="side right">
     <div class="navigation">
-      <div class="cell">
+      <div class="cell center">
         <span class="nextSlide">
-          <svg class="sideArrow">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-          </svg>
+          <a class="button actionButton">
+            <svg class="sideArrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
         </span>
       </div>
     </div>
@@ -423,7 +427,7 @@
   <nav class="panel top">
     <div class="sections">
       <div class="left">
-        <a href="universe.html?dir=u#20" title="IB" class="button actionTrigger">
+        <a href="universe.html?dir=u" title="IB" class="button actionTrigger">
           <svg style="width: 50px;height:50px;">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
           </svg>
@@ -499,13 +503,13 @@
       </script>
 
       <!-- <div class="fix-12-12"> -->
-      <div id="navTarget" class="wrap">
-      </div>
+      <!-- <div id="navTarget" class="wrap">
+      </div> -->
       <!-- <ul class="flex fixedspaces" style="flex-wrap: nowrap !important;">
         </ul> -->
 
 
-      <script>
+      <!-- <script>
         var linkNames = ['edit', 'brand', 'show', 'detail', 'universe'];
         var navTarget = document.getElementById('navTarget');
 
@@ -531,57 +535,57 @@
         }
 
 
-      </script>
-      <!-- <div class="owl-carousel owl-theme ae-3">
-          <div class="item"><a href="#1"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG1179.jpeg"
-                alt="1" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#2"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/lpzip.jpg"
-                alt="2" class="cover deferredImg "></a></div>
-          <div class="item"><a href="#3"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/LG026.jpeg"
-                alt="3" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#4"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG0509.jpg"
-                alt="4" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#5"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IB9ArnaudLoubry.jpeg"
-                alt="5" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#6"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/zapa.jpg"
-                alt="6" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#7"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleDepecheMode1.jpg"
-                alt="7" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#8"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleFigaroMar2003screen.jpg"
-                alt="8" class="cover deferredImg"></a></div>
-          <div class="item"><a href="#9"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/tpscreen.jpeg"
-                alt="9" class="cover deferredImg"></a></div>
-        </div> -->
+      </script> -->
+      <div class="owl-carousel owl-theme ae-3">
+        <div class="item"><a href="#1"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG1179.jpeg"
+              alt="1" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#2"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/lpzip.jpg"
+              alt="2" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#3"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/LG026.jpeg"
+              alt="3" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#4"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IMG0509.jpg"
+              alt="4" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#5"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/IB9ArnaudLoubry.jpeg"
+              alt="5" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#6"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/zapa.jpg"
+              alt="6" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#7"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleDepecheMode1.jpg"
+              alt="7" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#8"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/ArticleFigaroMar2003screen.jpg"
+              alt="8" class="cover deferredImg carouselImage"></a></div>
+        <div class="item"><a href="#9"><img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="assets/img/tpscreen.jpeg"
+              alt="9" class="cover deferredImg carouselImage"></a></div>
+      </div> -->
 
-      <!-- </div> -->
+    </div>
 
-      <style>
-        .owl-carousel .item {
-          display: block;
-          height: 0;
-          padding-bottom: 56.25%;
-          overflow: hidden;
-        }
+    <style>
+      .owl-carousel .item {
+        display: block;
+        height: 0;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+      }
 
-        .cover {
-          object-fit: cover;
-          width: 100%;
-          height: 150px;
-        }
+      .cover {
+        object-fit: cover;
+        width: 100%;
+        height: 150px;
+      }
 
-        .owl-carousel .item img {
-          display: block;
-        }
+      .owl-carousel .item img {
+        display: block;
+      }
 
-        .owl-carousel .owl-dots {
-          display: none;
-        }
-      </style>
+      .owl-carousel .owl-dots {
+        display: none;
+      }
+    </style>
     </div>
   </nav>
 
   <!-- for desktop swipe
-<script> window.disableOnScroll = 1; </script>-->
+<script> window.disableOnScroll = 1; </script> -->
 
   <!-- for mobile swipe
 <script> window.disableOnSwipe = 1; </script>-->
@@ -651,6 +655,10 @@
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
         </svg>
       </li>
+      <li class="pinterest"><svg>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#pinterest"></use>
+        </svg>
+      </li>
       <li class="facebook">
         <svg>
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
@@ -680,9 +688,9 @@
 
 
     <!-- s2-background -->
-    <!-- <div class="background" style="background-image:url(assets/img/lpzip.jpg)"> -->
-    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="LP-zip" data-src="assets/img/lpzip.jpg"
-      class="background deferredImg">
+    <div class="background" style="background-image:url(assets/img/lpzip.jpg)">
+      <!-- <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="LP-zip" data-src="assets/img/lpzip.jpg"
+      class="background deferredImg"> -->
     </div>
 
     <!-- s2-navigation bottom -->
@@ -714,6 +722,10 @@
       <li class="facebook">
         <svg>
           <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+        </svg>
+      </li>
+      <li class="pinterest"><svg>
+          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#pinterest"></use>
         </svg>
       </li>
       <li class="linkedin">
@@ -1086,10 +1098,14 @@
 <script>
   var shares = document.querySelectorAll('.share');
   var titles = document.querySelectorAll('.slide');
+  var images = document.querySelectorAll('.carouselImage')
+
   for (let i = 0; i < shares.length; i++) {
     var element = shares[i];
     element.setAttribute('data-url', 'http://isabelleballu.com/test/edit.html#' + (i + 1));
     element.setAttribute('data-text', 'ARCHIVES OF ISABELLE BALLU : ' + titles[i].getAttribute('data-title') + '-');
+    element.setAttribute('data-pinterest-image', 'http://isabelleballu.com/test/' + images[i].getAttribute('data-src'));
+    console.log(images[i])
   }
 </script>
 <script>
