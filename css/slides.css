@@ -93,21 +93,21 @@ html {
   backface-visibility: hidden;
 }
 
-body {
+body, .slidesContainer {
   position: absolute;
   width: 100%;
   height: 100%;
   min-height:100%;
 }
 
-html, body {
+html, body, .slidesContainer {
   max-width: 100%;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
 html.scrollable,
-html.scrollable body {
+html.scrollable body, .slidesContainer {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -2271,9 +2271,9 @@ html:not(.page-loaded) .slides.animated.scroll:not(.noPreload) .slide {
   z-index: 100;
   padding: calc(3% + 50px) 4%;
   pointer-events: none;
-  opacity: 0;
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+  opacity: 1;
+  /* -webkit-transition: opacity 0.5s; */
+  /* transition: opacity 0.5s; */
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   /* compact navigation */
@@ -3065,8 +3065,10 @@ html:not(.page-loaded) .slides.animated.scroll:not(.noPreload) .slide {
 }
 .popupShown,
 .popupShown body,
+.popupShown .slidesContainer,
 .sidebarShown,
-.sidebarShown body {
+.sidebarShown body 
+.sidebarShown .slidesContainer {
   overflow-y: hidden !important;
 }
 
@@ -9485,3 +9487,23 @@ form input[type="email"].input-96 {
   overflow-x: hidden !important;
 }
 /*# sourceMappingURL=slides.css.map */
+.owl-carousel .item {
+  display: block;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+}
+
+.cover {
+  object-fit: cover;
+  width: 100%;
+  height: 0%;
+}
+
+.owl-carousel .item img {
+  display: block;
+}
+
+.owl-carousel .owl-dots {
+  display: none;
+}

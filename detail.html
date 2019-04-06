@@ -1,14 +1,20 @@
 <!doctype html>
-<html>
+<html class="html">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#303030" />
+  <meta name="msapplication-navbutton-color" content="#303030">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303030">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="css/slides.css" rel="stylesheet" id='slidescss' type="text/css">
 
   <!-- Page Title -->
-  <title>Isabelle Ballu</title>
+  <title>Isabelle Ballu - Detail</title>
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/okm1bwz.css">
@@ -18,28 +24,23 @@
     rel="stylesheet" type="text/css" />
 
 
-  <!-- Styles -->
-  <link href="css/custom.css" rel="stylesheet" type="text/css">
 
-  <!-- Custom Styles -->
-  <!--link href="css/custom.css" rel="stylesheet" type="text/css"-->
 
   <!-- Scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="js/plugins.js" type="text/javascript" name="plugins"></script>
-  <script src="js/slides.js" type="text/javascript" name="main-scripts"></script>
-
-  <!-- Custom Scripts -->
-  <!--script src="js/custom.js" type="text/javascript" name="custom-scripts"></script-->
+  <script src="js/slides.js" type="text/javascript" name="main-scripts" defer></script>
+  <script src="js/plugins.js" type="text/javascript" name="plugins" defer></script>
 
   <style>
     /* more icon */
+
     .share.customShare .more:hover svg,
     .dropdownShown .share.customShare .more svg {
       fill: #1194F6 !important;
     }
 
     /* custom share styles */
+
     .share.customShare span,
     .share.customShare svg {
       -webkit-transition: 0.15s;
@@ -79,87 +80,70 @@
     }
 
     /* custom window styles */
+
     .customShareWindow.dropdown.share li:not(:hover):not(:last-child) {
       background: #DCDCDC !important;
     }
 
     /* new social colors */
-    .dropdown.share .vk {
-      background: #395F85;
-    }
-
-    .dropdown.share .weibo {
-      background: #E90F24;
-    }
   </style>
 
+  <!-- for desktop -->
+  <script> window.disableOnScroll = 1; </script>
+
+  <!-- for mobile -->
+  <script> window.disableOnSwipe = 1; </script>
+
+
+  <!-- up and down navigation functions-->
   <script>
+    // sliding transition function
     $(document).ready(function () {
       var direction = (new URL(document.location)).searchParams.get('dir')
       switch (direction) {
         case "d":
-          $('.slides').addClass(`animated fadeInUpBig slow`)
+          $('.slidesContainer').addClass(`animated fadeInUpBig slow`)
           break;
         case "u":
-          $('.slides').addClass(`animated fadeInDownBig slow`)
+          $('.slidesContainer').addClass(`animated fadeInDownBig slow`)
           break;
-        default:
-          $('.slides').addClass(`animated fadeIn slow`)
       }
       setTimeout(function () {
-        $('.slides').removeClass('animated fadeInUpBig fadeInDownBig slow');
+        $('.slidesContainer').removeClass('animated fadeInUpBig fadeInDownBig slow');
       }, 1000);
       var redirect = (new URL(document.location)).searchParams.get('rdm')
-      if (redirect == "") {
+      if (redirect) {
         window.location.hash = "#" + parseInt(Math.round((Math.random() * 20)))
       }
     })
-    $(document).on('click', '.ua', function () {
-      var hash = (new URL(document.location).hash)
-      window.location.href = `show.html?dir=u${hash}`
+    $(document).on('click', '.ua', function (event) {
+      var hash = window.location.hash;
+      window.location.href = 'universe.html?dir=u' + hash;
+      event.stopPropagation();
     })
-    $(document).on('click', '.da', function () {
-      var hash = (new URL(document.location).hash)
-      window.location.href = `universe.html?dir=d${hash}`
+    $(document).on('click', '.da', function (event) {
+      var hash = window.location.hash;
+      window.location.href = 'brand.html?dir=d' + hash;
+      event.stopPropagation();
     })
-  </script>
-
-  <script>
-    function shareVK() {
-      var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-        title = $('.share[data-dropdown-id="more"]').data('text'),
-        description = "Your Description",
-        url = 'https://vkontakte.ru/share.php?url=' + yourUrl + '&title=' + title + '&description=' + description + '&noparse=true';
-      window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-    }
-    function shareWeibo() {
-      var yourUrl = $('.share[data-dropdown-id="more"]').data('url'),
-        title = $('.share[data-dropdown-id="more"]').data('text'),
-        url = 'http://service.weibo.com/share/share.php?url=' + yourUrl + '&appkey=&title=' + title + '&pic=&ralateUid=&language=zh_cn';
-      window.open(url, '', 'toolbar=0,status=0,width=626,height=436');
-    }
-
-    //function for the external link in the share window
-    function externalLink(url) {
-      window.location = url;
-    }
   </script>
 
   <!-- typeface -->
+
   <script>
-    (function (d) {
-      var config = {
-        kitId: 'okm1bwz',
-        scriptTimeout: 3000,
-        async: true
-      },
-        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
-    })(document);
+      (function (d) {
+        var config = {
+          kitId: 'okm1bwz',
+          scriptTimeout: 3000,
+          async: true
+        },
+          h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+      })(document);
   </script>
 
 </head>
 
-<body class="slides film horizontal">
+<body class="slides film horizontal noPreload">
 
 
   <!-- SVG Library -->
@@ -361,7 +345,7 @@
       <defs>
         <style></style>
       </defs>
-      <title>headphons</title>
+      <title>headphones</title>
       <path class="cls-1"
         d="M33.53 14.9v-1.38a13.45 13.45 0 0 0-26.9 0v16a7.65 7.65 0 0 0 2.51.48h.76v-16.47a10.19 10.19 0 0 1 20.38 0v16.4h.72a7.6 7.6 0 0 0 2.59-.46v-14.57zm-28.74.85a7.72 7.72 0 0 0 0 13zm30.44.05v12.84a7.73 7.73 0 0 0 0-12.84z" />
     </symbol>
@@ -385,28 +369,27 @@
         d="M3.33 20h-3.33v6.67a3.33 3.33 0 0 0 3.33 3.33h6.67v-3.33h-6.67zM3.33 3.33h6.67v-3.33h-6.67a3.33 3.33 0 0 0-3.33 3.33v6.67h3.33zM26.67 0h-6.67v3.33h6.67v6.67h3.33v-6.67a3.33 3.33 0 0 0-3.33-3.33zM26.67 26.67h-6.67v3.33h6.67a3.33 3.33 0 0 0 3.33-3.33v-6.67h-3.33z" />
     </symbol>
     <symbol id="television" viewBox="0 0 33.09 29.79">
-            <defs>
-                <style></style>
-              </defs>
-            <title>television</title>
-            
+      <defs>
+        <style></style>
+      </defs>
+      <title>television</title>
+
       <path class="cls-1"
         d="M33.09,8.14V29.79H0V8.14A1.59,1.59,0,0,1,1.59,6.55h11.7L8.22,1.48a.88.88,0,0,1,0-1.22A.86.86,0,0,1,8.84,0a.83.83,0,0,1,.61.26l5.9,5.9a1.06,1.06,0,0,1,0,1.51,1.12,1.12,0,0,1-.76.3H3a1.44,1.44,0,0,0-1.46,1.4V28.09h30V9.37A1.44,1.44,0,0,0,30.06,8H18.49a1.09,1.09,0,0,1-.75-.3,1.06,1.06,0,0,1,0-1.51l3.47-3.48a.83.83,0,0,1,.61-.26.87.87,0,0,1,.62,1.48L19.79,6.55h11.7A1.6,1.6,0,0,1,33.09,8.14Z" />
       <path class="cls-1"
-        d="M29,9.22H4.09a.93.93,0,0,0-.89.95V25.81a.93.93,0,0,0,.89,1H29a.93.93,0,0,0,.89-1V10.17A.93.93,0,0,0,29,9.22ZM27.1,23.72a12.26,12.26,0,0,0-2-.72H8a.58.58,0,0,1-.61-.54V13.62A.58.58,0,0,1,8,13.08H25.14a.58.58,0,0,1,.61.54v8.84Z"
-               />
-          </symbol>
-      
-       <symbol id="text" viewBox="0 0 25.48 29.72">
-            <defs>
-                <style></style>
-              </defs>
-            <title>text</title>
-            
+        d="M29,9.22H4.09a.93.93,0,0,0-.89.95V25.81a.93.93,0,0,0,.89,1H29a.93.93,0,0,0,.89-1V10.17A.93.93,0,0,0,29,9.22ZM27.1,23.72a12.26,12.26,0,0,0-2-.72H8a.58.58,0,0,1-.61-.54V13.62A.58.58,0,0,1,8,13.08H25.14a.58.58,0,0,1,.61.54v8.84Z" />
+    </symbol>
+
+    <symbol id="text" viewBox="0 0 25.48 29.72">
+      <defs>
+        <style></style>
+      </defs>
+      <title>text</title>
+
       <path class="cls-1"
         d="M23.83,6.81v18a1.64,1.64,0,0,1-1.65,1.64H4.92A1.63,1.63,0,0,1,3.28,24.8V3.31A1.64,1.64,0,0,1,4.92,1.66H18.68V0H1.86A1.86,1.86,0,0,0,0,1.86v26a1.86,1.86,0,0,0,1.86,1.86H23.62a1.86,1.86,0,0,0,1.86-1.86v-21Z" />
       <path class="cls-1" d="M23.88,5.09H22a1.64,1.64,0,0,1-1.65-1.64V2Z" />
-          </symbol>
+    </symbol>
     <symbol id="info" viewBox="0 0 30 30">
       <path class="cls-1"
         d="M15 0a15 15 0 1 0 15 15 15 15 0 0 0-15-15zm0 7.11a1.19 1.19 0 0 1 1.17 1.26 1.21 1.21 0 0 1-1.17 1.22 1.26 1.26 0 0 1-1.2-1.22 1.24 1.24 0 0 1 1.2-1.26zm-2.51 15.89v-.71c1.61-.12 1.8-.29 1.8-1.94v-5.14c0-1.51 0-1.61-1.63-1.82v-.64a13.3 13.3 0 0 0 3.37-1v8.62c0 1.65.18 1.82 1.81 1.94v.69z" />
@@ -417,6 +400,10 @@
       <path class="cls-1" d="M5 2h1v-1h13v17h-1v1h1a1 1 0 0 0 1-1v-17a1 1 0 0 0-1-1h-13a1 1 0 0 0-1 1z" />
     </symbol>
 
+    <symbol id="pause" viewBox="0 0 30 30">
+      <path d="M5.92 2.52h4.45v24.99h-4.45zM19.64 2.51h4.45v24.99h-4.45z" />
+    </symbol>
+
 
   </svg>
 
@@ -424,7 +411,7 @@
   <nav class="panel top">
     <div class="navigation">
       <div class="center upArrow">
-        <a class="button actionButton ua">
+        <a class="ua button actionButton">
           <svg>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-up"></use>
           </svg>
@@ -436,7 +423,7 @@
   <nav class="panel bottom">
     <div class="navigation">
       <div class="center downArrow ">
-        <a class="button actionButton da">
+        <a class="da button actionButton">
           <svg>
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-down"></use>
           </svg>
@@ -447,11 +434,13 @@
 
   <nav class="side left">
     <div class="navigation">
-      <div class="cell">
+      <div class="cell center">
         <span class="prevSlide">
-          <svg class="sideArrow">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
-          </svg>
+          <a class="button actionButton">
+            <svg class="sideArrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-left"></use>
+            </svg>
+          </a>
         </span>
       </div>
     </div>
@@ -459,36 +448,53 @@
 
   <nav class="side right">
     <div class="navigation">
-      <div class="cell">
+      <div class="cell center">
         <span class="nextSlide">
-          <svg class="sideArrow">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
-          </svg>
+          <a class="button actionButton">
+            <svg class="sideArrow">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#arrow-right"></use>
+            </svg>
+          </a>
         </span>
       </div>
     </div>
   </nav>
 
-  <!-- Panel Top #06 -->
+  <!-- IB Logo, Carousel, share logos -->
   <nav class="panel top">
     <div class="sections">
       <div class="left">
-        <a href="universe.html?dir=u#20" title="IB" class="button actionTrigger"><svg style="width: 50px;height:50px;">
+        <a href="universe.html?dir=u" title="IB" class="button actionTrigger">
+          <svg style="width: 50px;height:50px;">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
-          </svg></a></div>
+          </svg>
+        </a>
+      </div>
       <div class="right">
         <span class="button actionButton sidebarTrigger" data-sidebar-id="9"
-          style="padding-top:10px !important; padding-right:50px !important;"><svg style="width: 30px;height:30px;">
+          style="padding-top:10px !important; padding-right:50px !important;">
+          <svg style="width: 30px;height:30px;">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#slides"></use>
-          </svg></span></div>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </nav>
+  <nav class="panel bottom">
+    <div class="sections">
+      <div class="right">
+        <span id="shareDropdown" data-dropdown-id="s5" class="button actionButton dropdownTrigger"
+          style="padding-top:10px !important; padding-right:50px !important;">
+          <i class="material-icons">share</i>
+        </span>
+      </div>
     </div>
   </nav>
 
-
   <!-- Sidebar -->
-  <nav class="sidebar bottom yellow" data-sidebar-id="9">
+  <nav class="sidebar bottom" data-sidebar-id="9">
     <div class="content">
-      <script src="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/owl.carousel.min.js"></script>
+      <script src="js/owl.carousel.min.js" defer></script>
       <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.carousel.min.css"
         rel="stylesheet" type="text/css">
       <link href="https://cdn.rawgit.com/OwlCarousel2/OwlCarousel2/develop/dist/assets/owl.theme.default.min.css"
@@ -497,6 +503,7 @@
       <script>
         $(document).ready(function () {
           $('.owl-carousel').owlCarousel({
+            lazyLoad: true,
             stagePadding: 10,
             loop: true,
             margin: 1,
@@ -508,96 +515,38 @@
                 margin: 10
               },
               600: {
-                items: 4,
+                items: 3,
                 nav: false,
                 margin: 10
               },
               1000: {
-                items: 6,
+                items: 4,
                 nav: false,
-                loop: false,
                 margin: 10
               },
               1500: {
-                items: 8,
+                items: 6,
                 nav: false,
-                loop: false,
                 margin: 10
               },
               2000: {
-                items: 10,
+                items: 8,
                 nav: false,
-                loop: false,
                 margin: 10
               }
             }
           })
         })
       </script>
-
-      <div class="fix-12-12">
-        <!-- your carousel -->
-        <div class="owl-carousel owl-theme ae-3" style="">
-          <div class="item"><a href="#1"><img src="assets/img/000001.jpeg" alt="1" class="cover"></a></div>
-          <div class="item"><a href="#2"><img src="assets/img/IMG0881.jpeg" alt="2" class="cover"></a></div>
-          <div class="item"><a href="#3"><img src="assets/img/stagesketch.jpeg" alt="3" class="cover"></a></div>
-          <div class="item"><a href="#4"><img src="assets/img/coins.jpg" alt="4" class="cover"></a></div>
-          <div class="item"><a href="#5"><img src="assets/img/shoeac.jpg" alt="5" class="cover"></a></div>
-          <div class="item"><a href="#6"><img src="assets/img/glasses.jpg" alt="6" class="cover"></a></div>
-          <div class="item">7</div>
-          <div class="item">8</div>
-          <div class="item">9</div>
-          <div class="item">10</div>
-          <div class="item">11</div>
-          <div class="item">12</div>
-          <div class="item">13</div>
-          <div class="item">14</div>
-          <div class="item">15</div>
-          <div class="item">16</div>
-          <div class="item">17</div>
-          <div class="item">18</div>
-          <div class="item">19</div>
-          <div class="item">20</div>
-        </div>
-
-      </div>
-
-      <style>
-        .owl-carousel .item {
-          display: block;
-          height: 0;
-          padding-bottom: 56.25%;
-          overflow: hidden;
-        }
-
-        .owl-carousel .item a {}
-
-        .cover {
-          object-fit: cover;
-          width: 100%;
-          height: 150px;
-        }
-
-        .owl-carousel .item img {
-          display: block;
-        }
-
-        .owl-carousel .owl-dots {
-          display: none;
-        }
-      </style>
     </div>
   </nav>
 
   <!-- for desktop swipe-->
-  <script> window.disableOnScroll = 1; </script>
+  <!-- <script> window.disableOnScroll = 1; </script> -->
 
   <!-- for mobile swipe-->
-  <script> window.disableOnSwipe = 1; </script>
+  <!-- <script> window.disableOnSwipe = 1; </script> -->
 
-
-  <!-- Example background-slideshow -->
-  <!-- 1) copy styles -->
   <style>
     .slideshow .background {
       opacity: 0;
@@ -690,25 +639,90 @@
   </style>
 
 
+  <div class="slidesContainer">
+    <!-- Slide 1 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="1">
 
-  <!-- Slide 1 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="1">
+      <!-- s1-information -->
+      <div class="content">
+        <div class="container">
+          <div class="wrap">
+            <div class="fix-7-12 left">
+              <div class="whitepad shadow hideForTablet">
+                <h1 class="uppercase">Franc' Pairon</h1>
+                <h2>Interview 17/11/2017</h2>
+                <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                  born
+                  and I will give you a complete account of the system."</h4>
+                <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                  the
+                  blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                  language
+                  ocean.
+                </h5>
+                <ul class="museum" style="padding-top:20px;">
+                  <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                      </svg>
+                      <p class="uppercase">Audio</p>
+                    </a></li>
+                  <li><a href="#"><svg style="width:20px;height:20px;">
+                        <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                      </svg>
+                      <p class="uppercase">Defile</p>
+                    </a></li>
+                  <li><a href="#"><svg style="width: 20px; height:20px;">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                      </svg>
+                      <p class="uppercase">Image</p>
+                    </a></li>
+                </ul>
+                <a href="#">
+                  <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                </a>
+              </div>
+            </div>
 
-    <!-- s1-information -->
-    <div class="content">
-      <div class="container">
-        <div class="wrap">
-          <div class="fix-7-12 left">
-            <div class="whitepad shadow hideForTablet">
+          </div>
+        </div>
+      </div>
+
+      <!-- s1-background -->
+      <div class="background" style="background-image:url(assets/img/000001.jpeg); background-position: bottom center;">
+      </div>
+
+      <!-- s1-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p1"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s1" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
+
+    </section>
+
+
+    <!-- Slide 1-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p1">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
               <h1 class="uppercase">Franc' Pairon</h1>
               <h2>Interview 17/11/2017</h2>
               <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
                 born
-                and I will give you a complete account of the system."</h4>
+                and
+                I will give you a complete account of the system."</h4>
               <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
                 the
-                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                language
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
                 ocean.
               </h5>
               <ul class="museum" style="padding-top:20px;">
@@ -733,814 +747,777 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- s1-background -->
-    <div class="background" style="background-image:url(assets/img/000001.jpeg); background-position: bottom center;">
+    <!-- Slide 1-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s1" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg></li>
+        <li class="instagram"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg></li>
+        <li class="facebook"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg></li>
+        <li class="linkedin"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg></li>
+        <li class="mail" data-subject="Subject" data-body="Body"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg></li>
+      </ul>
     </div>
 
-    <!-- s1-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p1"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s1" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
-
-  </section>
 
 
-  <!-- Slide 1-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p1">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:20px;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
+
+
+
+    <!-- Slide 2 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="2">
+
+      <!-- s2-information -->
+      <div class="content">
+        <div class="container">
+          <div class="wrap bottom">
+            <div class="fix-7-12 toLeft">
+              <div class="whitepad shadow hideForTablet">
+                <ul class="grid">
+                  <li class="col-12-12 left cell-33">
+                    <h1>PASSAGE N&deg;X</h1>
+                    <h2>Survival of the Fittest (SS 2005)</h2>
+                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                      was
+                      born and I will give you a complete account of the system."</h4>
+                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                      live
+                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                      large
+                      language
+                      ocean.
+                    </h5>
+                    <ul class="museum" style="padding-top:20px;">
+                      <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                          </svg>
+                          <p class="uppercase">Audio</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width:20px;height:20px;">
+                            <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                          </svg>
+                          <p class="uppercase">Defile</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width: 20px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                          </svg>
+                          <p class="uppercase">Image</p>
+                        </a></li>
+                    </ul>
+                    <a href="#">
+                      <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                    </a>
+                  </li>
+                  <li class="col-6-12 left fromCenter">
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Slide 1-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s1" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
+      <!-- s2-background -->
+      <div class="background" style="background-image:url(assets/img/IMG0881.jpeg)"></div>
+
+      <!-- s2-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p2"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s2" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
+
+    </section>
 
 
-
-
-
-
-  <!-- Slide 2 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="2">
-
-    <!-- s2-information -->
-    <div class="content">
-      <div class="container">
-        <div class="wrap bottom">
-          <div class="fix-7-12 toLeft">
-            <div class="whitepad shadow hideForTablet">
-              <ul class="grid">
-                <li class="col-12-12 left cell-33">
-                  <h1>PASSAGE N&deg;X</h1>
-                  <h2>Survival of the Fittest (SS 2005)</h2>
-                  <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                    was
-                    born and I will give you a complete account of the system."</h4>
-                  <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language
-                    ocean.
-                  </h5>
-                  <ul class="museum" style="padding-top:20px;">
-                    <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
-                        <p class="uppercase">Audio</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width:20px;height:20px;">
-                          <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                        <p class="uppercase">Defile</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width: 20px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                        <p class="uppercase">Image</p>
-                      </a></li>
-                  </ul>
-                  <a href="#">
-                    <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                  </a>
-                </li>
-                <li class="col-6-12 left fromCenter">
-                </li>
+    <!-- Slide 2-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p2">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
+              <h1 class="uppercase">Franc' Pairon</h1>
+              <h2>Interview 17/11/2017</h2>
+              <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                born
+                and
+                I will give you a complete account of the system."</h4>
+              <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.
+              </h5>
+              <ul class="museum" style="padding-top:5%;">
+                <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                    </svg>
+                    <p class="uppercase">Audio</p>
+                  </a></li>
+                <li><a href="#"><svg style="width:20px;height:20px;">
+                      <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                    </svg>
+                    <p class="uppercase">Defile</p>
+                  </a></li>
+                <li><a href="#"><svg style="width: 20px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                    </svg>
+                    <p class="uppercase">Image</p>
+                  </a></li>
               </ul>
+              <a href="#">
+                <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+              </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <!-- s2-background -->
-    <div class="background" style="background-image:url(assets/img/IMG0881.jpeg)"></div>
+    <!-- Slide 2-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s2" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg></li>
+        <li class="instagram"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg></li>
+        <li class="facebook"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg></li>
+        <li class="linkedin"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg></li>
+        <li class="mail" data-subject="Subject" data-body="Body"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg></li>
+      </ul>
+    </div>
 
-    <!-- s2-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p2"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s2" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
-
-  </section>
 
 
-  <!-- Slide 2-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p2">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:5%;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
+    <!-- Slide 3 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="3">
+
+      <!-- s3-information -->
+      <div class="content" style="z-index:30;">
+        <div class="container">
+          <div class="wrap noSpaces" style="padding:50px 0;">
+            <div class="panorama"><img src="assets/img/stagesketch.jpeg" alt="setdesign" /></div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Slide 2-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s2" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
+      <div class="content hideForTablet" style="pointer-events:none;">
+        <div class="container">
+          <div class="wrap bottom" style="z-index:50;">
+            <div class="fix-7-12 toLeft">
+              <div class="whitepad shadow" style="pointer-events: all;">
+                <ul class="grid">
+                  <li class="col-12-12 left cell-33">
+                    <h1>PASSAGE N&deg;X</h1>
+                    <h2>Survival of the Fittest (SS 2005)</h2>
+                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                      was
+                      born and I will give you a complete account of the system."</h4>
+                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                      live
+                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                      large
+                      language
+                      ocean.
+                    </h5>
+                    <ul class="museum" style="padding-top:20px;">
+                      <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                          </svg>
+                          <p class="uppercase">Audio</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width:20px;height:20px;">
+                            <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                          </svg>
+                          <p class="uppercase">Defile</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width: 20px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                          </svg>
+                          <p class="uppercase">Image</p>
+                        </a></li>
+                    </ul>
+                    <a href="#">
+                      <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                    </a>
+                  </li>
+                  <li class="col-6-12 left ae-4 fromCenter">
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-
-
-  <!-- Slide 3 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="3">
-
-    <!-- s3-information -->
-    <div class="content" style="z-index:30;">
-      <div class="container">
-        <div class="wrap noSpaces" style="padding:50px 0;">
-          <div class="panorama"><img src="assets/img/stagesketch.jpeg" alt="setdesign" /></div>
+          </div>
         </div>
       </div>
-    </div>
+      <!-- s3-background -->
 
-    <div class="content hideForTablet" style="pointer-events:none;">
-      <div class="container">
-        <div class="wrap bottom" style="z-index:50;">
-          <div class="fix-7-12 toLeft">
-            <div class="whitepad shadow" style="pointer-events: all;">
-              <ul class="grid">
-                <li class="col-12-12 left cell-33">
-                  <h1>PASSAGE N&deg;X</h1>
-                  <h2>Survival of the Fittest (SS 2005)</h2>
-                  <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                    was
-                    born and I will give you a complete account of the system."</h4>
-                  <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language
-                    ocean.
-                  </h5>
-                  <ul class="museum" style="padding-top:20px;">
-                    <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
-                        <p class="uppercase">Audio</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width:20px;height:20px;">
-                          <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                        <p class="uppercase">Defile</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width: 20px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                        <p class="uppercase">Image</p>
-                      </a></li>
-                  </ul>
-                  <a href="#">
-                    <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                  </a>
-                </li>
-                <li class="col-6-12 left ae-4 fromCenter">
-                </li>
+      <!-- s3-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p3"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s3" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
+
+    </section>
+
+
+    <!-- Slide 3-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p3">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
+              <h1 class="uppercase">Franc' Pairon</h1>
+              <h2>Interview 17/11/2017</h2>
+              <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                born
+                and
+                I will give you a complete account of the system."</h4>
+              <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.
+              </h5>
+              <ul class="museum" style="padding-top:5%;">
+                <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                    </svg>
+                    <p class="uppercase">Audio</p>
+                  </a></li>
+                <li><a href="#"><svg style="width:20px;height:20px;">
+                      <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                    </svg>
+                    <p class="uppercase">Defile</p>
+                  </a></li>
+                <li><a href="#"><svg style="width: 20px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                    </svg>
+                    <p class="uppercase">Image</p>
+                  </a></li>
               </ul>
+              <a href="#">
+                <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+              </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- s3-background -->
 
-    <!-- s3-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p3"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s3" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
+    <!-- Slide 3-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s3" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg></li>
+        <li class="instagram"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg></li>
+        <li class="facebook"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg></li>
+        <li class="linkedin"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg></li>
+        <li class="mail" data-subject="Subject" data-body="Body"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg></li>
+      </ul>
+    </div>
 
-  </section>
 
 
-  <!-- Slide 3-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p3">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:5%;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
+
+    <!-- Slide 4 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="4">
+
+      <!-- s4-information -->
+
+
+      <div class="content">
+        <div class="container">
+          <div class="wrap bottom">
+            <div class="fix-7-12 toLeft">
+              <div class="whitepad shadow hideForTablet">
+                <ul class="grid">
+                  <li class="col-12-12 left cell-33">
+                    <h1>PASSAGE N&deg;X</h1>
+                    <h2>Survival of the Fittest (SS 2005)</h2>
+                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                      was
+                      born and I will give you a complete account of the system."</h4>
+                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                      live
+                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                      large
+                      language
+                      ocean.
+                    </h5>
+                    <ul class="museum" style="padding-top:20px;">
+                      <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                          </svg>
+                          <p class="uppercase">Audio</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width:20px;height:20px;">
+                            <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                          </svg>
+                          <p class="uppercase">Defile</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width: 20px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                          </svg>
+                          <p class="uppercase">Image</p>
+                        </a></li>
+                    </ul>
+                    <a href="#">
+                      <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                    </a>
+                  </li>
+                  <li class="col-6-12 left ae-4 fromCenter">
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Slide 3-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s3" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
+      <!-- s4-background -->
+      <div class="background" style="background-image:url(assets/img/coins.jpg)"></div>
 
 
+      <!-- s4-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p4"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s4" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
+
+    </section>
 
 
-  <!-- Slide 4 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="4">
-
-    <!-- s4-information -->
-
-
-    <div class="content">
-      <div class="container">
-        <div class="wrap bottom">
-          <div class="fix-7-12 toLeft">
-            <div class="whitepad shadow hideForTablet">
-              <ul class="grid">
-                <li class="col-12-12 left cell-33">
-                  <h1>PASSAGE N&deg;X</h1>
-                  <h2>Survival of the Fittest (SS 2005)</h2>
-                  <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                    was
-                    born and I will give you a complete account of the system."</h4>
-                  <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language
-                    ocean.
-                  </h5>
-                  <ul class="museum" style="padding-top:20px;">
-                    <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
-                        <p class="uppercase">Audio</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width:20px;height:20px;">
-                          <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                        <p class="uppercase">Defile</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width: 20px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                        <p class="uppercase">Image</p>
-                      </a></li>
-                  </ul>
-                  <a href="#">
-                    <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                  </a>
-                </li>
-                <li class="col-6-12 left ae-4 fromCenter">
-                </li>
+    <!-- Slide 4-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p4">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
+              <h1 class="uppercase">Franc' Pairon</h1>
+              <h2>Interview 17/11/2017</h2>
+              <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                born
+                and
+                I will give you a complete account of the system."</h4>
+              <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.
+              </h5>
+              <ul class="museum" style="padding-top:5%;">
+                <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                    </svg>
+                    <p class="uppercase">Audio</p>
+                  </a></li>
+                <li><a href="#"><svg style="width:20px;height:20px;">
+                      <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                    </svg>
+                    <p class="uppercase">Defile</p>
+                  </a></li>
+                <li><a href="#"><svg style="width: 20px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                    </svg>
+                    <p class="uppercase">Image</p>
+                  </a></li>
               </ul>
+              <a href="#">
+                <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+              </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- s4-background -->
-    <div class="background" style="background-image:url(assets/img/coins.jpg)"></div>
+
+    <!-- Slide 4-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s4" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg></li>
+        <li class="instagram"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg></li>
+        <li class="facebook"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg></li>
+        <li class="linkedin"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg></li>
+        <li class="mail" data-subject="Subject" data-body="Body"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg></li>
+      </ul>
+    </div>
 
 
-    <!-- s4-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p4"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s4" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
+    <!-- Slide 5 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="5">
 
-  </section>
+      <!-- s5-information -->
 
 
-  <!-- Slide 4-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p4">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:5%;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
+      <div class="content">
+        <div class="container">
+          <div class="wrap bottom">
+            <div class="fix-7-12 toLeft">
+              <div class="whitepad shadow hideForTablet">
+                <ul class="grid">
+                  <li class="col-12-12 left cell-33">
+                    <h1>PASSAGE N&deg;X</h1>
+                    <h2>Survival of the Fittest (SS 2005)</h2>
+                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                      was
+                      born and I will give you a complete account of the system."</h4>
+                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                      live
+                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                      large
+                      language
+                      ocean.
+                    </h5>
+                    <ul class="museum" style="padding-top:20px;">
+                      <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                          </svg>
+                          <p class="uppercase">Audio</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width:20px;height:20px;">
+                            <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                          </svg>
+                          <p class="uppercase">Defile</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width: 20px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                          </svg>
+                          <p class="uppercase">Image</p>
+                        </a></li>
+                    </ul>
+                    <a href="#">
+                      <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                    </a>
+                  </li>
+                  <li class="col-6-12 left ae-4 fromCenter">
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Slide 4-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s4" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
+      <!-- s5-background -->
+      <div class="background" style="background-image:url(assets/img/shoeac.jpg)"></div>
 
 
-  <!-- Slide 5 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="5">
+      <!-- s5-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p5"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s5" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
 
-    <!-- s5-information -->
+    </section>
 
 
-    <div class="content">
-      <div class="container">
-        <div class="wrap bottom">
-          <div class="fix-7-12 toLeft">
-            <div class="whitepad shadow hideForTablet">
-              <ul class="grid">
-                <li class="col-12-12 left cell-33">
-                  <h1>PASSAGE N&deg;X</h1>
-                  <h2>Survival of the Fittest (SS 2005)</h2>
-                  <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                    was
-                    born and I will give you a complete account of the system."</h4>
-                  <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language
-                    ocean.
-                  </h5>
-                  <ul class="museum" style="padding-top:20px;">
-                    <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
-                        <p class="uppercase">Audio</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width:20px;height:20px;">
-                          <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                        <p class="uppercase">Defile</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width: 20px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                        <p class="uppercase">Image</p>
-                      </a></li>
-                  </ul>
-                  <a href="#">
-                    <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                  </a>
-                </li>
-                <li class="col-6-12 left ae-4 fromCenter">
-                </li>
+    <!-- Slide 5-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p5">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
+              <h1 class="uppercase">Franc' Pairon</h1>
+              <h2>Interview 17/11/2017</h2>
+              <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                born
+                and
+                I will give you a complete account of the system."</h4>
+              <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.
+              </h5>
+              <ul class="museum" style="padding-top:5%;">
+                <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                    </svg>
+                    <p class="uppercase">Audio</p>
+                  </a></li>
+                <li><a href="#"><svg style="width:20px;height:20px;">
+                      <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                    </svg>
+                    <p class="uppercase">Defile</p>
+                  </a></li>
+                <li><a href="#"><svg style="width: 20px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                    </svg>
+                    <p class="uppercase">Image</p>
+                  </a></li>
               </ul>
+              <a href="#">
+                <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+              </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- s5-background -->
-    <div class="background" style="background-image:url(assets/img/shoeac.jpg)"></div>
+
+    <!-- Slide 5-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s5" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg></li>
+        <li class="instagram"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg></li>
+        <li class="facebook"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg></li>
+        <li class="linkedin"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg></li>
+        <li class="mail" data-subject="Subject" data-body="Body"><svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg></li>
+      </ul>
+    </div>
 
 
-    <!-- s5-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p5"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s5" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
+    <!-- Slide 6 -->
+    <section class="slide whiteSlide fade kenBurns" data-name="6">
 
-  </section>
+      <!-- s6-information -->
 
 
-  <!-- Slide 5-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p5">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:5%;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
+      <div class="content">
+        <div class="container">
+          <div class="wrap bottom">
+            <div class="fix-7-12 toLeft">
+              <div class="whitepad shadow hideForTablet">
+                <ul class="grid">
+                  <li class="col-12-12 left cell-33">
+                    <h1>PASSAGE N&deg;X</h1>
+                    <h2>Survival of the Fittest (SS 2005)</h2>
+                    <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                      was
+                      born and I will give you a complete account of the system."</h4>
+                    <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                      live
+                      the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                      large
+                      language
+                      ocean.
+                    </h5>
+                    <ul class="museum" style="padding-top:20px;">
+                      <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                          </svg>
+                          <p class="uppercase">Audio</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width:20px;height:20px;">
+                            <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                          </svg>
+                          <p class="uppercase">Defile</p>
+                        </a></li>
+                      <li><a href="#"><svg style="width: 20px; height:20px;">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                          </svg>
+                          <p class="uppercase">Image</p>
+                        </a></li>
+                    </ul>
+                    <a href="#">
+                      <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+                    </a>
+                  </li>
+                  <li class="col-6-12 left ae-4 fromCenter">
+                  </li>
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Slide 5-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s5" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
+      <!-- s6-background -->
+      <div class="background" style="background-image:url(assets/img/glasses.jpg)"></div>
 
 
-  <!-- Slide 6 -->
-  <section class="slide whiteSlide fade kenBurns" data-name="6">
+      <!-- s6-navigation bottom -->
+      <nav class="panel bottom" style="z-index:1000;">
+        <div class="sections">
+          <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p6"
+              style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
+              </svg></button></div>
+          <div class="right"><span data-dropdown-id="s6" class="button actionButton dropdownTrigger"
+              style="padding-top:10px !important; padding-right:50px !important;"><i
+                class="material-icons">share</i></span></div>
+        </div>
+      </nav>
 
-    <!-- s6-information -->
+    </section>
 
 
-    <div class="content">
-      <div class="container">
-        <div class="wrap bottom">
-          <div class="fix-7-12 toLeft">
-            <div class="whitepad shadow hideForTablet">
-              <ul class="grid">
-                <li class="col-12-12 left cell-33">
-                  <h1>PASSAGE N&deg;X</h1>
-                  <h2>Survival of the Fittest (SS 2005)</h2>
-                  <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
-                    was
-                    born and I will give you a complete account of the system."</h4>
-                  <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                    live
-                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-                    language
-                    ocean.
-                  </h5>
-                  <ul class="museum" style="padding-top:20px;">
-                    <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                        </svg>
-                        <p class="uppercase">Audio</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width:20px;height:20px;">
-                          <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                        </svg>
-                        <p class="uppercase">Defile</p>
-                      </a></li>
-                    <li><a href="#"><svg style="width: 20px; height:20px;">
-                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                        </svg>
-                        <p class="uppercase">Image</p>
-                      </a></li>
-                  </ul>
-                  <a href="#">
-                    <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-                  </a>
-                </li>
-                <li class="col-6-12 left ae-4 fromCenter">
-                </li>
+    <!-- Slide 6-pop up for mobile and tablet -->
+    <div class="popup white hideForDesktop" data-popup-id="p6">
+      <div class="content">
+        <div class="container">
+          <div class="wrap spaces">
+            <div class="fix-11-12 left popupContent">
+              <h1 class="uppercase">Franc' Pairon</h1>
+              <h2>Interview 17/11/2017</h2>
+              <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                born
+                and
+                I will give you a complete account of the system."</h4>
+              <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind
+                texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language
+                ocean.
+              </h5>
+              <ul class="museum" style="padding-top:5%;">
+                <li><a href="#"><svg style="width: 26.67px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
+                    </svg>
+                    <p class="uppercase">Audio</p>
+                  </a></li>
+                <li><a href="#"><svg style="width:20px;height:20px;">
+                      <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
+                    </svg>
+                    <p class="uppercase">Defile</p>
+                  </a></li>
+                <li><a href="#"><svg style="width: 20px; height:20px;">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
+                    </svg>
+                    <p class="uppercase">Image</p>
+                  </a></li>
               </ul>
+              <a href="#">
+                <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
+              </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-    <!-- s6-background -->
-    <div class="background" style="background-image:url(assets/img/glasses.jpg)"></div>
 
-
-    <!-- s6-navigation bottom -->
-    <nav class="panel bottom" style="z-index:1000;">
-      <div class="sections">
-        <div class="left"><button class="button popupTrigger hideForDesktop" data-popup-id="p6"
-            style="padding-left:25px !important;"><svg style="width: 40px; height:40px;">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#info"></use>
-            </svg></button></div>
-        <div class="right"><span data-dropdown-id="s6" class="button actionButton dropdownTrigger"
-            style="padding-top:10px !important; padding-right:50px !important;"><i
-              class="material-icons">share</i></span></div>
-      </div>
-    </nav>
-
-  </section>
-
-
-  <!-- Slide 6-pop up for mobile and tablet -->
-  <div class="popup white hideForDesktop" data-popup-id="p6">
-    <div class="content">
-      <div class="container">
-        <div class="wrap spaces">
-          <div class="fix-11-12 left popupContent">
-            <h1 class="uppercase">Franc' Pairon</h1>
-            <h2>Interview 17/11/2017</h2>
-            <h4>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
-              and
-              I will give you a complete account of the system."</h4>
-            <h5>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-              blind
-              texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
-            </h5>
-            <ul class="museum" style="padding-top:5%;">
-              <li><a href="#"><svg style="width: 26.67px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#headphones"></use>
-                  </svg>
-                  <p class="uppercase">Audio</p>
-                </a></li>
-              <li><a href="#"><svg style="width:20px;height:20px;">
-                    <use xmls:xlink="http://www.w3.org/1999/xlink" xlink:href="#defile"></use>
-                  </svg>
-                  <p class="uppercase">Defile</p>
-                </a></li>
-              <li><a href="#"><svg style="width: 20px; height:20px;">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#identity"></use>
-                  </svg>
-                  <p class="uppercase">Image</p>
-                </a></li>
-            </ul>
-            <a href="#">
-              <p class="uppercase" style="padding-top:20px;">More on this collection &hellip;</p>
-            </a>
-          </div>
-        </div>
-      </div>
+    <!-- Slide 6-social media -->
+    <div class="dropdown bottom center share" data-dropdown-id="s6" data-text="#" data-url="#" data-pinterest-image="#">
+      <ul>
+        <li class="twitter">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
+          </svg>
+        </li>
+        <li class="instagram">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
+          </svg>
+        </li>
+        <li class="facebook">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
+          </svg>
+        </li>
+        <li class="linkedin">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
+          </svg>
+        </li>
+        <li class="mail" data-subject="Subject" data-body="Body">
+          <svg>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
+          </svg>
+        </li>
+      </ul>
     </div>
   </div>
-
-  <!-- Slide 6-social media -->
-  <div class="dropdown bottom center share" data-dropdown-id="s6" data-text="#" data-url="#" data-pinterest-image="#">
-    <ul>
-      <li class="twitter"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#twitter"></use>
-        </svg></li>
-      <li class="instagram"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#instagram"></use>
-        </svg></li>
-      <li class="facebook"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
-        </svg></li>
-      <li class="linkedin"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#linkedin"></use>
-        </svg></li>
-      <li class="mail" data-subject="Subject" data-body="Body"><svg>
-          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mail"></use>
-        </svg></li>
-    </ul>
-  </div>
-
-
-  <!-- Preloader -->
-  <div class="loadingIcon"><svg class="loading-icon" id="loading-circle" viewBox="0 0 18 18">
-      <circle class="circle" opacity=".1" stroke="#fff" stroke-width="2" stroke-miterlimit="10" cx="9" cy="9" r="8"
-        fill="none"></circle>
-      <circle class="dash" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1,100"
-        cx="9" cy="9" r="8" fill="none"></circle>
-    </svg></div>
-  <script src="./plugins/pulltorefresh.js"></script>
-  <script>
-    /* global PullToRefresh */
-    PullToRefresh.init({
-      mainElement: 'body',
-      onRefresh: function () { alert('refresh') }
-    });
-  </script>
-
 </body>
+
+<!-- // we have to add data-title="the title" to all the <sections> with the class of .slide -->
 <script>
-  //we have to add data-title="the title" to all the <sections> with the class of .slide
   var shares = document.querySelectorAll('.share');
   var titles = document.querySelectorAll('.slide');
+  var images = document.querySelectorAll('.carouselImage')
+
   for (let i = 0; i < shares.length; i++) {
     var element = shares[i];
     element.setAttribute('data-url', 'http://isabelleballu.com/edit.html#' + (i + 1));
     element.setAttribute('data-text', 'ARCHIVES OF ISABELLE BALLU : ' + titles[i].getAttribute('data-title') + '-');
+    element.setAttribute('data-pinterest-image', 'http://isabelleballu.com/' + images[i].getAttribute('data-src'));
+    console.log(images[i])
   }
+</script>
+<script>
+
+  var dropdown = document.getElementById('shareDropdown');
+  dropdown.addEventListener('click', function (e) {
+    dropdown.setAttribute('data-dropdown-id', 's' + location.hash.slice(1));
+  });
 </script>
 
 </html>
